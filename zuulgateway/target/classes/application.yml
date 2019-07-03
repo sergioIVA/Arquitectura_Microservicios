@@ -1,0 +1,28 @@
+spring:
+   application:
+      name: zuul-server
+server:
+   port: 8762
+zuul:
+   routes:
+      vehiculos:
+         path: /vehiculo/**
+         serviceId: back-end-Estacionamiento
+         stripPrefix: false
+      puestos:
+         path: /puesto/**
+         serviceId: back-end-Estacionamiento
+         stripPrefix: false
+      reserva:
+         path: /reserva/**
+         serviceId: back-end-Estacionamiento
+         stripPrefix: false         
+   ignored-headers: Access-Control-Allow-Origin
+eureka:
+   client:
+      registerWithEureka: true
+      fetchRegistry: true
+      serviceUrl:
+         defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+   instance:
+      preferIpAddress: true
